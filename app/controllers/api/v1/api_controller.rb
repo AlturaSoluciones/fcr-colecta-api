@@ -18,6 +18,15 @@ module Api::V1
       end
     end
 
+    def cities
+      render json: City.all
+    end
+
+    def places
+      city = City.find(params[:id])
+      render json: city.places.where(status: params[:status])
+    end
+
     private
     def person_params
       params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email)
