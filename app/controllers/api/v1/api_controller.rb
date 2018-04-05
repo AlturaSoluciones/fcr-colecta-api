@@ -35,9 +35,22 @@ module Api::V1
       render json: Location.is_available?(params[:place_id], params[:schedule_id])
     end
 
+    def create_location
+      location = Location.create(location_params)
+      if location.persisted?
+        render json: { success: true, location: location }
+      else
+        render json: { success: false, errors: location.errors.full_messages }
+      end
+    end
+
     private
     def person_params
       params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email)
+    end
+
+    def location_params
+      params.permit(:place_id, :schedule_id, :responsible_id)
     end
   end
 end
