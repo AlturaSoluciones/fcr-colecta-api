@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       post :personal_data, to: 'api#create_person'
       get :cities, to: 'api#cities'
       get 'places/:id/:status', to: 'api#places'
+      get :schedules, to: 'api#schedules'
     end
   end
 end

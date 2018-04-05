@@ -27,6 +27,10 @@ module Api::V1
       render json: city.places.where(status: params[:status])
     end
 
+    def schedules
+      render json: Schedule.all
+    end
+
     private
     def person_params
       params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email)
