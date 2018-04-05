@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :cities, to: 'api#cities'
       get 'places/:id/:status', to: 'api#places'
       get :schedules, to: 'api#schedules'
+      get 'location_available/:place_id/:schedule_id', to: 'api#location_available'
     end
   end
 end

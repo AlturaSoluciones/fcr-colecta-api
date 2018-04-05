@@ -31,6 +31,10 @@ module Api::V1
       render json: Schedule.all
     end
 
+    def location_available
+      render json: Location.is_available?(params[:place_id], params[:schedule_id])
+    end
+
     private
     def person_params
       params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email)
