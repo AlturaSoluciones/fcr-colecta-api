@@ -1,4 +1,6 @@
 class Person < ApplicationRecord
-  belongs_to :invited_by
-  belongs_to :location
+  has_one :invited_by
+  has_one :location
+
+  validates_presence_of :firstname, :lastname
 end

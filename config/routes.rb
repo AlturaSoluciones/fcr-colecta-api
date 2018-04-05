@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get :email_lookup, to: 'api#email_lookup'
+      post :personal_data, to: 'api#create_person'
     end
   end
 end
