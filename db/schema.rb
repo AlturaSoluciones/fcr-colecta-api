@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405171954) do
+ActiveRecord::Schema.define(version: 20180405215525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,8 +61,10 @@ ActiveRecord::Schema.define(version: 20180405171954) do
     t.bigint "responsible_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "schedule_id"
     t.index ["place_id"], name: "index_locations_on_place_id"
     t.index ["responsible_id"], name: "index_locations_on_responsible_id"
+    t.index ["schedule_id"], name: "index_locations_on_schedule_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -97,7 +99,15 @@ ActiveRecord::Schema.define(version: 20180405171954) do
     t.index ["city_id"], name: "index_places_on_city_id"
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.date "day"
+    t.string "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "locations", "people", column: "responsible_id"
   add_foreign_key "locations", "places"
+  add_foreign_key "locations", "schedules"
   add_foreign_key "places", "cities"
 end
