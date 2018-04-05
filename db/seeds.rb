@@ -14,3 +14,8 @@ City.create name: 'Ibarra', latitude: 0.339200, longitude: -78.122200
 City.create name: 'Portoviejo', latitude: -1.054700, longitude: -80.452500
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+cities = {}
+CSV.foreach(Rails.root.join('db', 'support', 'new_lugares.csv')) do |row|
+  (cities[row[0]] ||= City.find_by(name: row[0])).places << Place.create(name: row[1], latitude: row[2], longitude: row[3], address: row[4])
+end
