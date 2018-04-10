@@ -1,0 +1,49 @@
+<%= semantic_form_for [:admin, @place] do |f| %>
+  <%= f.semantic_errors %>
+  <%= f.inputs do %>
+    <%= f.input :city_id, label: 'Ciudad', as: :select, collection: City.order('name').map{|p| [p.name, p.id]}, include_blank: false, input_html: { id: "city" } %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :latitude %>
+    <%= f.input :longitude %>
+    <%= f.input :status %>
+  <% end %>
+  <%= f.actions %>
+  <div id="to_capture_coords">
+    <div id="small_map_canvas" style="width:100%; height:600px;"></div>
+  </div>
+<% end %>
+
+<script src='http://maps.googleapis.com/maps/api/js?key=AIzaSyDCEEtEPWvLwrP-M0nJz4MeIRtRa_wiuJk&sensor=false&libraries=visualization' type='text/javascript'></script>
+<!--script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel-compiled.js" type="text/javascript"></script-->
+
+<script>
+  var map = null;
+  var point = null;
+  var point_marker = null;
+
+  function initialize() {
+    var bounds = new google.maps.LatLngBounds();
+    point = new google.maps.LatLng(<%= (@place.new_record? ? 0.046692 : @place.latitude) %>, <%= (@place.new_record? ? -78.202400 : @place.longitude) %>);
+    map = new google.maps.Map(document.getElementById('small_map_canvas'), {
+      zoom: 16,
+      center: point,
+      mapTypeId: google.maps.MapTypeId.SATELLITE
+    });
+
+     point_marker = new google.maps.Marker({
+      position: point,
+      map: map
+    });
+
+    google.maps.event.addListener(map, 'click', function (event) {
+      point = event.latLng;
+      point_marker.setPosition(point);
+      document.getElementById('place_latitude').setAttribute('value', event.latLng.lat());
+      document.getElementById('place_longitude').setAttribute('value', event.latLng.lng());
+    });
+  }
+
+  $(function() { initialize(); });
+
+</script>
