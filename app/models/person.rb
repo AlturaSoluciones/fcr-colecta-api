@@ -9,6 +9,8 @@ class Person < ApplicationRecord
   def send_invitation
     if invited_by_id.present? && invitation_sent_at.nil?
       FriendsMailer.send_invitation(self).deliver
+    elsif invitation_sent_at.nil?
+      FriendsMailer.send_leader_email(self).deliver
     end
   end
 end
