@@ -44,9 +44,24 @@ module Api::V1
       end
     end
 
+    def store_friends
+      Person.transaction do
+        Person.create!(friends_params[:friends])
+      end
+
+      render json: { success: true, message: 'Todos los amigos almacenados con exito'}
+
+    rescue
+      render json: { success: false, message: 'Alguno de los amigos no pudo ser almacenado'}
+    end
+
     private
     def person_params
-      params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email)
+      params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email, :invited_by_id)
+    end
+
+    def friends_params
+      params.permit(friends: %i{firstname lastname email cellphone invited_by_id})
     end
 
     def location_params
