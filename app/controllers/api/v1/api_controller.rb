@@ -57,7 +57,7 @@ module Api::V1
 
     private
     def person_params
-      params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email, :invited_by_id)
+      params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email, :gender)
     end
 
     def friends_params
