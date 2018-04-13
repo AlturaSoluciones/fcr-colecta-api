@@ -44,3 +44,18 @@ set :ssh_options, {
 set :rvm_type, :system
 set :rvm_ruby_version, "#{File.read('.ruby-version').strip}@#{File.read('.ruby-gemset').strip}"
 
+namespace :deploy do
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      within release_path do
+        execute :sudo, 'systemctl restart fcr-colecta-api', raise_on_non_zero_exit: false
+      end
+    end
+  end
+
+  after :publishing, :restart
+
+end
+
