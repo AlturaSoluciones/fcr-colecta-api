@@ -33,7 +33,7 @@ class Person < ApplicationRecord
   end
 
   def confirmed?
-    confirmation_token.nil? && confirmed_at.present?
+    confirmation_token.blank? && confirmed_at.present?
   end
 
   def as_json(options = {})
@@ -42,23 +42,24 @@ class Person < ApplicationRecord
       firstname: firstname,
       lastname: lastname,
       email: email,
+      cellphone: cellphone,
       is_leader: invited_by_id.nil?,
-      has_friends: friends.count > 5,
       has_location: location.present?,
       new_user: false,
       leader: invited_by,
       location: invited_by_id.nil? ? location : nil,
       confirmed: confirmed?,
-      has_personal_data: identifier.present?
+      has_personal_data: identifier.present?,
+      friends_count: friends.count
     }
   end
 
   private
 
   def correct_identifier?
-    if identifier
-     errors.add(:identifier, "has not 10 characters") unless identifier.size == 10
-     errors.add(:identifier, "has bad format") unless identifier_format_ok?
+    if identifier.present?
+      errors.add(:identifier, "has not 10 characters") unless identifier.size == 10
+      errors.add(:identifier, "has bad format") unless identifier_format_ok?
     end
   end
 

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :schedules, to: 'api#schedules'
       post :location, to: 'api#create_location'
       post :friends, to: 'api#store_friends'
+      get :friends, to: 'api#get_friends'
       post 'confirm_person/:token', to: 'api#confirm_person'
     end
   end
