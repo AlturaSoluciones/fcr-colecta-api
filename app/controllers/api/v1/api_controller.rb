@@ -24,15 +24,11 @@ module Api::V1
 
     def places
       city = City.find(params[:id])
-      render json: city.places.where(status: params[:status])
+      render json: city.places.available(params[:schedule_id])
     end
 
     def schedules
       render json: Schedule.all
-    end
-
-    def location_available
-      render json: Location.is_available?(params[:place_id], params[:schedule_id])
     end
 
     def create_location
