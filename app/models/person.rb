@@ -23,6 +23,17 @@ class Person < ApplicationRecord
     "#{firstname} #{lastname}"
   end
 
+  def confirm!
+    self.confirmation_token = nil
+    self.invitation_accepted_at = Time.current unless invitation_sent_at.nil?
+    self.confirmed_at = Time.current
+    save!
+  end
+
+  def confirmed?
+    confirmation_token.nil? && confirmed_at.present?
+  end
+
   def as_json(options = {})
     {
       id: id,
@@ -34,7 +45,9 @@ class Person < ApplicationRecord
       has_location: location.present?,
       new_user: false,
       leader: invited_by,
-      location: invited_by_id.nil? ? location : nil
+      location: invited_by_id.nil? ? location : nil,
+      confirmed: confirmed?,
+      has_personal_data: identifier.present?
     }
   end
 

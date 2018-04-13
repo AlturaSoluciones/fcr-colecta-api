@@ -51,6 +51,14 @@ module Api::V1
       render json: { success: false, message: 'Alguno de los amigos no pudo ser almacenado'}
     end
 
+    def confirm_person
+      person = Person.find_by(confirmation_token: params[:token])
+      person.confirm!
+      render json: { success: person.confirmed?, person: person }
+    rescue
+      render json: { success: false }
+    end
+
     private
     def person_params
       params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email, :gender)
