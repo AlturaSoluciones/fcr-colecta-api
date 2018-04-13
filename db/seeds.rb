@@ -20,7 +20,9 @@ CSV.foreach(Rails.root.join('db', 'support', 'new_lugares.csv')) do |row|
   (cities[row[0]] ||= City.find_by(name: row[0])).places << Place.create(name: row[1], latitude: row[2], longitude: row[3], address: row[4])
 end
 
-Schedule.create day:Date.new(2018, 5, 18), time: '7am-12pm'
-Schedule.create day:Date.new(2018, 5, 18), time: '12pm-6pm'
-Schedule.create day:Date.new(2018, 5, 19), time: '7am-12pm'
-Schedule.create day:Date.new(2018, 5, 19), time: '12pm-6pm'
+Schedule.create day:Date.new(2018, 5, 18), time: '7am-12pm', kind: 'am'
+Schedule.create day:Date.new(2018, 5, 18), time: '12pm-6pm', kind: 'pm'
+Schedule.create day:Date.new(2018, 5, 18), time: '7am-6pm', kind: 'all'
+Schedule.create day:Date.new(2018, 5, 19), time: '7am-12pm', kind: 'am'
+Schedule.create day:Date.new(2018, 5, 19), time: '12pm-6pm', kind: 'pm'
+Schedule.create day:Date.new(2018, 5, 19), time: '7am-6pm', kind: 'all'
