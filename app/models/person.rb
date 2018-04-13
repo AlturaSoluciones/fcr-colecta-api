@@ -1,4 +1,6 @@
 class Person < ApplicationRecord
+  has_secure_token :confirmation_token
+
   belongs_to :invited_by, class_name: 'Person', optional: true
   has_one :location, foreign_key: :responsible_id
   has_many :friends, class_name: 'Person', foreign_key: :invited_by_id

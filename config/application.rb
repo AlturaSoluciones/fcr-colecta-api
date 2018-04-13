@@ -34,5 +34,7 @@ module FcrColectaApi
 		config.middleware.use Rack::MethodOverride
 		config.middleware.use ActionDispatch::Cookies
 		config.middleware.use ActionDispatch::Session::CookieStore
+
+    config.action_mailer.default_url_options = { host: Rails.application.secrets.ui_url }
   end
 end
