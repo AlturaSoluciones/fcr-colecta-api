@@ -81,14 +81,21 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    database_cleaner (1.6.2)
     devise (4.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.3)
     erubi (1.7.0)
     execjs (2.7.0)
+    factory_girl (4.9.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.9.0)
+      factory_girl (~> 4.9.0)
+      railties (>= 3.0.0)
     ffi (1.9.21)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
@@ -98,7 +105,7 @@ GEM
     has_scope (0.7.1)
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
-    i18n (0.9.4)
+    i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.8.0)
       actionpack (>= 4.2, <= 5.2)
@@ -160,6 +167,10 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.1.4)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.2)
+      actionpack (~> 5.x, >= 5.0.1)
+      actionview (~> 5.x, >= 5.0.1)
+      activesupport (~> 5.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -185,11 +196,30 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-rails (3.7.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.1)
     sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    shoulda-matchers (3.0.1)
+      activesupport (>= 4.0.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -207,6 +237,8 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    validates_email_format_of (1.6.3)
+      i18n
     warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
@@ -221,13 +253,19 @@ DEPENDENCIES
   byebug
   capistrano-rails
   capistrano-rvm
+  database_cleaner
   devise
+  factory_girl_rails
   pg (~> 0.18)
   puma (~> 3.7)
   rack-cors
   rails (~> 5.1.4)
+  rails-controller-testing
+  rspec-rails
+  shoulda-matchers (~> 3.0.0.alpha)
   therubyracer
   tzinfo-data
+  validates_email_format_of
 
 BUNDLED WITH
    1.16.1
