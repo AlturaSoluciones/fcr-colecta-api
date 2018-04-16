@@ -77,14 +77,14 @@ class Person < ApplicationRecord
     province_code = identifier[0,2].to_i
     last_dig = identifier[9,1].to_i
     return false unless (1..24).include? province_code
-    sum = 0
-    identifier[0,9].each_char.with_index do |char, index|
-      factor = (index.odd? ? 1 : 2)
-      acum = factor * char.to_i
-      acum = acum - 9 if acum >10
-      sum += acum
-    end
-    verificator = (sum/10.0).ceil * 10 - sum
-    return verificator == last_dig
+    digits = identifier[0..8].to_s.reverse.scan(/\d/).map { |x| x.to_i }
+    digits = digits.each_with_index.map { |d, i|
+      d *= 2 if i.even?
+      d > 9 ? d - 9 : d
+    }
+    sum = digits.inject(0) { |m, x| m + x }
+    mod = 10 - sum % 10
+    mod == 10 ? 0 : mod
+    mod == last_dig
   end
 end
