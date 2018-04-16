@@ -11,13 +11,15 @@ class Person < ApplicationRecord
 
   validate :correct_identifier?
 
-  after_commit :send_invitation, on: :create
-
   def send_invitation
-    if invited_by_id.present? && invitation_sent_at.nil?
-      FriendsMailer.send_invitation(self).deliver
-    elsif invitation_sent_at.nil?
-      FriendsMailer.send_leader_email(self).deliver
+    if invitation_sent_at.nil?
+      self.invitation_sent_at = Time.current
+      save
+      if invited_by_id.present?
+        FriendsMailer.send_invitation(self).deliver
+      else
+        FriendsMailer.send_leader_email(self).deliver
+      end
     end
   end
 
@@ -36,6 +38,14 @@ class Person < ApplicationRecord
     confirmation_token.blank? && confirmed_at.present?
   end
 
+  def is_leader?
+    invited_by_id.nil?
+  end
+
+  def leader
+    invited_by
+  end
+
   def as_json(options = {})
     {
       id: id,
@@ -43,14 +53,14 @@ class Person < ApplicationRecord
       lastname: lastname,
       email: email,
       cellphone: cellphone,
-      is_leader: invited_by_id.nil?,
-      has_location: location.present?,
+      is_leader: is_leader?,
+      has_location: is_leader? ? location.present? : leader.location.present?,
       new_user: false,
-      leader: invited_by,
-      location: invited_by_id.nil? ? location : nil,
+      leader: leader,
+      location: is_leader? ? location : leader.location,
       confirmed: confirmed?,
       has_personal_data: identifier.present?,
-      friends_count: friends.count
+      friends_count: is_leader? ? friends.count : leader.friends.count
     }
   end
 
