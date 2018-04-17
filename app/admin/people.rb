@@ -14,7 +14,7 @@ ActiveAdmin.register Person do
     column "Phone", :phone
     column "Cellphone", :cellphone
     column "Status", :status
-    column "Invited by", :invited_by_id
+    column "Leader", :invited_by_id
     column "Confirmation token", :confirmation_token
     column "Confirmed at", :confirmed_at
     column :place do |p|
