@@ -18,7 +18,7 @@ ActiveAdmin.register Person do
     column "Confirmation token", :confirmation_token
     column "Confirmed at", :confirmed_at
     column :place do |p|
-      p.location ? p.location.place.name : "No place confirmed yet"
+      p.assigned_location ? p.assigned_location.place.name : "No place confirmed yet"
     end
   end
 end

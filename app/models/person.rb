@@ -7,7 +7,8 @@ class Person < ApplicationRecord
 
   validates_presence_of :firstname, :lastname
   validates :email, uniqueness: true
-  validates :email, :email_format => {message: 'has bad format'}
+  validates :email, email_format: {message: 'tiene formato incorrecto'}
+  validates :identifier, uniqueness: true, allow_blank: true
 
   validate :correct_identifier?
 
@@ -44,6 +45,10 @@ class Person < ApplicationRecord
 
   def leader
     invited_by
+  end
+
+  def assigned_location
+    is_leader? ? location : leader&.location
   end
 
   def as_json(options = {})
