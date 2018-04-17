@@ -1,0 +1,56 @@
+es:
+  date:
+    day_names:
+      - Domingo
+      - Lunes
+      - Martes
+      - Miercoles
+      - Jueves
+      - Viernes
+      - Sábado
+    formats:
+      year_week: "%g%V"
+  time:
+    formats:
+      year_week: "%g%V"
+  attributes:
+    name: Nombre
+    identifier: Cédula
+    phone: Teléfono fijo
+    cellphone: Móvil
+    latitude: Latitud
+    longitude: Longitud
+    created_at: 'Fecha de creación'
+    updated_at: 'Fecha de modificación'
+    user: Usuario
+  activerecord:
+    models:
+      person:
+        one: Persona
+        other: Personas
+    attributes:
+      person:
+        email: Correo
+        first_name: Nombre
+        last_name: Apellido
+        identifier: Cédula
+        birthday: Cumpleaños
+        gender: Género
+
+        password_confirmation: Repita contraseña
+        current_password: Contraseña actual
+        remember_me: ¿Recordalo en esta máquina?
+        company_id: Compañía
+        terms_of_service: Términos y condiciones
+        phone: Teléfono fijo
+        cellphone: Móvil
+        status: Estado actual
+        invited_by_id: leader
+        confirmation_token: Token de Confirmación
+        confirmet_at: Confirmado en
+  api:
+    operation_successful: Operación exitosa
+    internal_server_error: Operación no ejecutada
+    unauthorized: No autorizado
+    forbidden: Accesso prohibido
+    record_not_found: Registro no encontrado

@@ -33,6 +33,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.0.0.alpha'
   gem 'rails-controller-testing'
+  gem 'rails-i18n'
 end
 
 group :development do
