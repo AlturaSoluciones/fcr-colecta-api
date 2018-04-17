@@ -1,5 +1,7 @@
 es:
   date:
+    formats:
+      long: “%dd/%mm/%yyyy”
     day_names:
       - Domingo
       - Lunes
@@ -36,7 +38,6 @@ es:
         identifier: Cédula
         birthday: Cumpleaños
         gender: Género
-
         password_confirmation: Repita contraseña
         current_password: Contraseña actual
         remember_me: ¿Recordalo en esta máquina?
@@ -47,7 +48,7 @@ es:
         status: Estado actual
         invited_by_id: leader
         confirmation_token: Token de Confirmación
-        confirmet_at: Confirmado en
+        confirmed_at: Confirmado en
   api:
     operation_successful: Operación exitosa
     internal_server_error: Operación no ejecutada
