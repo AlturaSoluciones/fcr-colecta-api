@@ -1,7 +1,7 @@
 es:
   date:
     formats:
-      long: “%dd/%mm/%yyyy”
+      long: '%dd/%mm/%yyyy'
     day_names:
       - Domingo
       - Lunes
