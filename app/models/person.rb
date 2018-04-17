@@ -73,8 +73,8 @@ class Person < ApplicationRecord
 
   def correct_identifier?
     if identifier.present?
-      errors.add(:identifier, "has not 10 characters") unless identifier.size == 10
-      errors.add(:identifier, "has bad format") unless identifier_format_ok?
+      errors.add(:identifier, "no tiene 10 digitos") unless identifier.size == 10
+      errors.add(:identifier, "tiene un formato incorrecto") unless identifier_format_ok?
     end
   end
 
@@ -82,14 +82,16 @@ class Person < ApplicationRecord
     province_code = identifier[0,2].to_i
     last_dig = identifier[9,1].to_i
     return false unless (1..24).include? province_code
-    digits = identifier[0..8].to_s.reverse.scan(/\d/).map { |x| x.to_i }
-    digits = digits.each_with_index.map { |d, i|
-      d *= 2 if i.even?
-      d > 9 ? d - 9 : d
-    }
-    sum = digits.inject(0) { |m, x| m + x }
-    mod = 10 - sum % 10
-    mod == 10 ? 0 : mod
-    mod == last_dig
+    # digits = identifier[0..8].to_s.reverse.scan(/\d/).map { |x| x.to_i }
+    # digits = digits.each_with_index.map { |d, i|
+    #   d *= 2 if i.even?
+    #   d > 9 ? d - 9 : d
+    # }
+    # sum = digits.inject(0) { |m, x| m + x }
+    # mod = 10 - sum % 10
+    # mod == 10 ? 0 : mod
+    # mod == last_dig
+    # We are removing validation until we can fix the alg.
+    true
   end
 end
