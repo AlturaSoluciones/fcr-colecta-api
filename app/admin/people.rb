@@ -20,5 +20,6 @@ ActiveAdmin.register Person do
     column :place do |p|
       p.assigned_location ? p.assigned_location.place.name : "No place confirmed yet"
     end
+    actions
   end
 end
