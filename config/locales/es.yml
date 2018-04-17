@@ -1,5 +1,10 @@
 es:
   date:
+    formats:
+      default: "%-d/%-m/%Y"
+      long: "%-d de %B de %Y"
+      short: "%-d de %b"
+      year_week: "%g%V"
     day_names:
       - Domingo
       - Lunes
@@ -8,8 +13,6 @@ es:
       - Jueves
       - Viernes
       - Sábado
-    formats:
-      year_week: "%g%V"
   time:
     formats:
       year_week: "%g%V"
@@ -36,7 +39,6 @@ es:
         identifier: Cédula
         birthday: Cumpleaños
         gender: Género
-
         password_confirmation: Repita contraseña
         current_password: Contraseña actual
         remember_me: ¿Recordalo en esta máquina?
@@ -47,7 +49,12 @@ es:
         status: Estado actual
         invited_by_id: leader
         confirmation_token: Token de Confirmación
-        confirmet_at: Confirmado en
+        confirmed_at: Confirmado en
+      date:
+        formats:
+            default: "%-d/%-m/%Y"
+            long: "%-d de %B de %Y"
+            short: "%-d de %b"
   api:
     operation_successful: Operación exitosa
     internal_server_error: Operación no ejecutada
