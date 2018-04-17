@@ -1,7 +1,10 @@
 es:
   date:
     formats:
-      long: '%dd/%mm/%yyyy'
+      default: "%-d/%-m/%Y"
+      long: "%-d de %B de %Y"
+      short: "%-d de %b"
+      year_week: "%g%V"
     day_names:
       - Domingo
       - Lunes
@@ -10,8 +13,6 @@ es:
       - Jueves
       - Viernes
       - Sábado
-    formats:
-      year_week: "%g%V"
   time:
     formats:
       year_week: "%g%V"
@@ -49,6 +50,11 @@ es:
         invited_by_id: leader
         confirmation_token: Token de Confirmación
         confirmed_at: Confirmado en
+      date:
+        formats:
+            default: "%-d/%-m/%Y"
+            long: "%-d de %B de %Y"
+            short: "%-d de %b"
   api:
     operation_successful: Operación exitosa
     internal_server_error: Operación no ejecutada
