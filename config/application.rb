@@ -36,5 +36,6 @@ module FcrColectaApi
 		config.middleware.use ActionDispatch::Session::CookieStore
 
     config.action_mailer.default_url_options = { host: Rails.application.secrets.ui_url }
+    config.i18n.default_locale = :es
   end
 end
