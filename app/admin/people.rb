@@ -3,6 +3,13 @@ ActiveAdmin.register Person do
                 :phone, :cellphone, :status, :invited_by_id, :confirmation_token,
                 :confirmed_at, :location
 
+  includes :invited_by, :friends, location: :place
+
+  scope 'Todos', :all, default: true
+  scope 'Líderes', :leaders
+  scope 'Confirmados', :confirmed
+  scope 'Pendientes', :pending
+
   index do
     selectable_column
     column :firstname

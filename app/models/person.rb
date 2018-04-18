@@ -12,6 +12,10 @@ class Person < ApplicationRecord
 
   validate :correct_identifier?
 
+  scope :leaders, -> { where(invited_by_id: nil) }
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :pending, -> { where(confirmed_at: nil) }
+
   def send_invitation
     if invitation_sent_at.nil?
       self.invitation_sent_at = Time.current
