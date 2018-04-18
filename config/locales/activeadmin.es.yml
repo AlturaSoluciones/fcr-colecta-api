@@ -233,8 +233,8 @@ es:
     attributes:
       person:
         email: Correo
-        first_name: Nombre
-        last_name: Apellido
+        firstname: Nombre
+        lastname: Apellido
         identifier: Cédula
         birthday: Cumpleaños
         gender: Género
@@ -247,7 +247,8 @@ es:
         phone: Teléfono fijo
         cellphone: Móvil
         status: Estado actual
-        invited_by_id: leader
+        invited_by_id: Líder
+        invited_by: Líder
         confirmation_token: Token de Confirmación
         confirmet_at: Confirmado en
   api:

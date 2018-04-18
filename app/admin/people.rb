@@ -5,20 +5,31 @@ ActiveAdmin.register Person do
 
   index do
     selectable_column
-    column "Firstname", :firstname
-    column "Lastname", :lastname
-    column "Identifier", :identifier
-    column "Birthday", :birthday
-    column "Email", :email
-    column "Gender", :gender
-    column "Phone", :phone
-    column "Cellphone", :cellphone
-    column "Status", :status
-    column "Leader", :invited_by_id
-    column "Confirmation token", :confirmation_token
-    column "Confirmed at", :confirmed_at
+    column :firstname
+    column :lastname
+    column :identifier
+    column :birthday
+    column :email
+    column :gender
+    column :phone
+    column :cellphone
+    column "Confirmado?" do |p|
+      p.confirmed? ? status_tag('Confirmado', class: 'green') : status_tag('Pendiente', class: 'red')
+    end
+    column "Es Líder?" do |p|
+      p.is_leader? ? status_tag("Líder", class: 'green') : status_tag("Miembro", class: 'orange')
+    end
+    column :leader
+    column "Equipo" do |p|
+      p.friends.each do |f|
+        div f.display_name, class: 'no-wrap'
+      end
+      text_node "&nbsp;".html_safe
+    end
+    column :confirmation_token
+    column :confirmed_at
     column :place do |p|
-      p.assigned_location ? p.assigned_location.place.name : "No place confirmed yet"
+      div(p.assigned_location ? p.assigned_location.display_name : "Sin ubicación", class: 'no-wrap')
     end
     actions
   end
