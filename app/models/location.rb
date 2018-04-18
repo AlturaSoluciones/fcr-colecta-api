@@ -16,4 +16,8 @@ class Location < ApplicationRecord
     responsible.send_invitation
     responsible.friends.each(&:send_invitation)
   end
+
+  def display_name
+    "#{place.city.name} - #{place.name} - #{schedule.display_name}"
+  end
 end
