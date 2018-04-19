@@ -251,9 +251,16 @@ es:
         invited_by: Líder
         confirmation_token: Token de Confirmación
         confirmet_at: Confirmado en
+        resend_email: Reenviar correo
+        place: Lugar
   api:
     operation_successful: Operación exitosa
     internal_server_error: Operación no ejecutada
     unauthorized: No autorizado
     forbidden: Accesso prohibido
     record_not_found: Registro no encontrado
+
+  active_admin:
+    batch_actions:
+      labels:
+        resend_emails: Reenviar correo a
