@@ -38,6 +38,22 @@ ActiveAdmin.register Person do
     column :place do |p|
       div(p.assigned_location ? p.assigned_location.display_name : "Sin ubicación", class: 'no-wrap')
     end
+    column :resend_email do |p|
+      link_to "Reenviar correo", resend_confirmation_email_admin_person_path(p), remote: true unless p.confirmed?
+    end
     actions
+  end
+
+  member_action :resend_confirmation_email do
+    person = Person.find(params[:id])
+    person.send_invitation unless person.confirmed?
+    render js: "alert('Confirmación reenviada')"
+  end
+
+  batch_action :resend_emails do |ids|
+    batch_action_collection.find(ids).each do |person|
+      person.send_invitation unless person.confirmed?
+    end
+    redirect_to collection_path, alert: "Correos reenviados"
   end
 end

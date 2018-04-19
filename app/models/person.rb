@@ -20,11 +20,11 @@ class Person < ApplicationRecord
     if invitation_sent_at.nil?
       self.invitation_sent_at = Time.current
       save
-      if invited_by_id.present?
-        FriendsMailer.send_invitation(self).deliver
-      else
-        FriendsMailer.send_leader_email(self).deliver
-      end
+    end
+    if invited_by_id.present?
+      FriendsMailer.send_invitation(self).deliver
+    else
+      FriendsMailer.send_leader_email(self).deliver
     end
   end
 
