@@ -49,3 +49,6 @@ gem 'activeadmin'
 gem 'devise'
 
 gem 'therubyracer'
+
+gem 'exception_notification'
+gem 'slack-notifier'
