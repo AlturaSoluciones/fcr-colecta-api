@@ -4,17 +4,13 @@ class Place < ApplicationRecord
 
   def self.available(schedule_id)
     schedule = Schedule.find(schedule_id)
-    places = where(status: :active).left_joins(locations: :schedule)
-    if schedule.kind == "all"
-      places = places.where('locations.id IS NULL OR schedules.day != :day', day: schedule.day)
-    else
-      places = places
-               .where('locations.id IS NULL OR schedules.day != :day OR schedules.kind NOT IN (:kinds)',
-                      day: schedule.day,
-                      kinds: [schedule.kind, 'all']
-                 )
-    end
-    places.distinct
+    where(status: :active)
+      .joins("LEFT JOIN (locations INNER JOIN
+                 schedules ON locations.schedule_id = schedules.id
+                 AND schedules.day = #{connection.quote schedule.day}
+                 AND schedules.kind IN ('all', #{connection.quote schedule.kind}))
+                 ON places.id = locations.place_id ")
+      .where(locations: { id: nil }).distinct
   rescue Exception => e
     Rails.logger.error e
     Place.none
