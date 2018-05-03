@@ -250,7 +250,7 @@ es:
         invited_by_id: Líder
         invited_by: Líder
         confirmation_token: Token de Confirmación
-        confirmet_at: Confirmado en
+        confirmed_at: Confirmado en
         resend_email: Reenviar correo
         place: Lugar
   api:
