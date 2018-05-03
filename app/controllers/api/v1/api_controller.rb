@@ -63,6 +63,10 @@ module Api::V1
       render json: { success: false }
     end
 
+    def get_friends_number
+      render json: Setting.where(name: 'friends')
+    end
+
     private
     def person_params
       params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email, :gender)
@@ -75,5 +79,6 @@ module Api::V1
     def location_params
       params.permit(:place_id, :schedule_id, :responsible_id)
     end
+
   end
 end
