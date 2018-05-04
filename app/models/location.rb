@@ -20,4 +20,17 @@ class Location < ApplicationRecord
   def display_name
     "#{place.city.name} - #{place.name} - #{schedule.display_name}"
   end
+
+  def as_json(options = {})
+    {
+      id: id,
+      place: place,
+      responsible_id: responsible_id,
+      schedule_id: schedule_id
+    }
+  end
+
+  def self.available_places(scheduleId)
+    where(schedule_id: scheduleId).joins(responsible: :friends).group(:responsible_id, "locations.id").having("COUNT(*) < 10")
+  end
 end
