@@ -55,6 +55,14 @@ module Api::V1
       render json: Person.find(params[:person_id]).friends
     end
 
+    def delete_friend
+      if Person.find(params[:id]).friends.find(params[:friend_id]).destroy
+        render json: { success: true, message: 'Amigo eliminado' }
+      else
+        render json: { success: false, message: 'No se puedo eliminar amigo' }
+      end
+    end
+
     def confirm_person
       person = Person.find_by(confirmation_token: params[:token])
       person.confirm!
