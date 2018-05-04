@@ -67,6 +67,13 @@ module Api::V1
       render json: Setting.all.map{ |setting| [setting.name, setting.value] }.to_h
     end
 
+    def available_places
+      city = City.find(params[:cityId])
+
+      render json: city.locations.available_places(params[:scheduleId])
+    end
+
+
     private
     def person_params
       params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email, :gender)
