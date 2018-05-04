@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       post :location, to: 'api#create_location'
       post :friends, to: 'api#store_friends'
       get :friends, to: 'api#get_friends'
+      delete 'leader/:id/friend/:friend_id', to: 'api#delete_friend'
       post 'confirm_person/:token', to: 'api#confirm_person'
       get :get_settings, to: 'api#get_settings'
       get :available_places, to: 'api#available_places'
