@@ -63,8 +63,8 @@ module Api::V1
       render json: { success: false }
     end
 
-    def get_friends_number
-      render json: Setting.where(name: 'friends')
+    def get_settings
+      render json: Setting.all.map{ |setting| [setting.name, setting.value] }.to_h
     end
 
     private

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       post :friends, to: 'api#store_friends'
       get :friends, to: 'api#get_friends'
       post 'confirm_person/:token', to: 'api#confirm_person'
-      get :friends_number, to: 'api#get_friends_number'
+      get :get_settings, to: 'api#get_settings'
     end
   end
 end
