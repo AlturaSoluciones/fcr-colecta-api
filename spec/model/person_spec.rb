@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Person, type: :model do
   before do
-    @person = FactoryGirl.build(:person)
+    @person = FactoryBot.build(:person)
   end
 
   it { should validate_presence_of(:firstname) }

@@ -44,7 +44,7 @@ class Person < ApplicationRecord
   end
 
   def is_leader?
-    invited_by_id.nil?
+    invited_by_id.nil? && !is_joining
   end
 
   def leader
@@ -63,13 +63,14 @@ class Person < ApplicationRecord
       email: email,
       cellphone: cellphone,
       is_leader: is_leader?,
-      has_location: is_leader? ? location.present? : leader.location.present?,
+      has_location: is_leader? ? location.present? : leader&.location.present?,
       new_user: false,
       leader: leader,
-      location: is_leader? ? location : leader.location,
+      location: is_leader? ? location : leader&.location,
       confirmed: confirmed?,
       has_personal_data: identifier.present?,
-      friends_count: is_leader? ? friends.count : leader.friends.count
+      friends_count: is_leader? ? friends.count : leader ? leader.friends.count : 0,
+      is_joining: is_joining
     }
   end
 

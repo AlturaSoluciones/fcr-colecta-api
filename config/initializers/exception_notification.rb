@@ -10,10 +10,12 @@ ExceptionNotification.configure do |config|
   # Notifiers =================================================================
 
   # Email notifier sends notifications by email.
-  config.add_notifier :slack,
-                      webhook_url: Rails.application.secrets.slack[:url],
-                      channel: '#exceptions',
-                      additional_parameters: {
-                        mrkdwn: true
-                      }
+  if Rails.application.secrets.dig :slack, :url
+    config.add_notifier :slack,
+                        webhook_url: Rails.application.secrets.slack[:url],
+                        channel: '#exceptions',
+                        additional_parameters: {
+                          mrkdwn: true
+                        }
+  end
 end

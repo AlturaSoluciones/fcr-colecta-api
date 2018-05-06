@@ -40,6 +40,18 @@ module Api::V1
       end
     end
 
+    def join_location
+      location = Location.find(params[:location_id])
+      person = Person.find(params[:person_id])
+      person.invited_by = location.responsible
+      if person.save
+        person.send_invitation
+        render json: { success: true, location: location }
+      else
+        render json: { success: false, errors: person.errors.full_messages }
+      end
+    end
+
     def store_friends
       Person.transaction do
         Person.create!(friends_params[:friends])
@@ -84,7 +96,7 @@ module Api::V1
 
     private
     def person_params
-      params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email, :gender)
+      params.permit(:firstname, :lastname, :identifier, :birthday, :phone, :cellphone, :email, :gender, :is_joining)
     end
 
     def friends_params
