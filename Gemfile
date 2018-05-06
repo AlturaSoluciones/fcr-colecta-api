@@ -29,7 +29,7 @@ group :development, :test do
 
   # rspec
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.0.0.alpha'
   gem 'rails-controller-testing'

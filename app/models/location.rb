@@ -26,7 +26,8 @@ class Location < ApplicationRecord
       id: id,
       place: place,
       responsible_id: responsible_id,
-      schedule_id: schedule_id
+      schedule_id: schedule_id,
+      name: display_name
     }
   end
 

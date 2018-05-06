@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'places/:id/:status', to: 'api#places'
       get :schedules, to: 'api#schedules'
       post :location, to: 'api#create_location'
+      post :join_location, to: 'api#join_location'
       post :friends, to: 'api#store_friends'
       get :friends, to: 'api#get_friends'
       delete 'leader/:id/friend/:friend_id', to: 'api#delete_friend'
