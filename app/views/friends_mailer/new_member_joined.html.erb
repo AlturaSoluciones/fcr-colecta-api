@@ -1,0 +1,30 @@
+<p>Estimado(a) <%= @leader.firstname %></p>
+
+<p><%= @member.first_name%> acaba de agregarse a tu grupo</p>
+
+<h4>Datos del participante</h4>
+<ul>
+  <li><strong>Nombre:</strong> <%= member.first_name %></li>
+  <li><strong>Apellido:</strong> <%= member.last_name %></li>
+  <li><strong>Correo:</strong> <%= member.email %></li>
+  <li><strong>Celular:</strong> <%= member.cellphone %></li>
+</ul>
+
+<h4>Datos del punto</h4>
+<ul>
+  <li><strong>Ciudad: </strong><%= @location.place.city.name %></li>
+  <li><strong>Lugar: </strong><%= @location.place.name %></li>
+  <li><strong>Horario: </strong><%= @location.schedule.display_name %></li>
+</ul>
+
+<p>
+  Gracias por unirte a la construcción de una sociedad más optimista y solidaria.
+</p>
+
+<h3>Fundación Cecilia Rivadeneira</h3>
+<p>
+  Buscamos mejorar la calidad de vida de los niños/as con cáncer y sus familias en el Ecuador. Estamos convencidos que
+  el cuidado de un niño con cáncer y su familia va mucho más allá de la medicación y la tecnología.
+</p>
+
+<p>Si ud. no ha creado esta cuenta o recibió por error este mensaje, haga caso omiso a este correo.</p>

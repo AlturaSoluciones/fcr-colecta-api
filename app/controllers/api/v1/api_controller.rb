@@ -46,6 +46,9 @@ module Api::V1
       person.invited_by = location.responsible
       if person.save
         person.send_invitation
+        # TODO: Bad place to put it...
+        # Should be change to model
+        FriendsMailer.new_member_joined(person, person.invited_by).deliver
         render json: { success: true, location: location }
       else
         render json: { success: false, errors: person.errors.full_messages }
