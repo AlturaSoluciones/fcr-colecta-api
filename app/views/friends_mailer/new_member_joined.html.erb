@@ -1,13 +1,13 @@
 <p>Estimado(a) <%= @leader.firstname %></p>
 
-<p><%= @member.first_name%> acaba de agregarse a tu grupo</p>
+<p><%= @member.firstname%> acaba de agregarse a tu grupo</p>
 
 <h4>Datos del participante</h4>
 <ul>
-  <li><strong>Nombre:</strong> <%= member.first_name %></li>
-  <li><strong>Apellido:</strong> <%= member.last_name %></li>
-  <li><strong>Correo:</strong> <%= member.email %></li>
-  <li><strong>Celular:</strong> <%= member.cellphone %></li>
+  <li><strong>Nombre:</strong> <%= @member.firstname %></li>
+  <li><strong>Apellido:</strong> <%= @member.lastname %></li>
+  <li><strong>Correo:</strong> <%= @member.email %></li>
+  <li><strong>Celular:</strong> <%= @member.cellphone %></li>
 </ul>
 
 <h4>Datos del punto</h4>
