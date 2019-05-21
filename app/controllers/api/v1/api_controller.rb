@@ -28,7 +28,7 @@ module Api::V1
     end
 
     def schedules
-      render json: Schedule.all
+      render json: Schedule.enabled
     end
 
     def create_location
