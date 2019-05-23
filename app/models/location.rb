@@ -32,6 +32,6 @@ class Location < ApplicationRecord
   end
 
   def self.available_places(scheduleId)
-    where(schedule_id: scheduleId).joins(responsible: :friends).group(:responsible_id, "locations.id").having("COUNT(*) < 10")
+    where(schedule_id: scheduleId).left_joins(responsible: :friends).group(:responsible_id, "locations.id").having("COUNT(*) < 10")
   end
 end
