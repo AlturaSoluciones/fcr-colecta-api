@@ -19,7 +19,7 @@ module Api::V1
     end
 
     def cities
-      render json: City.all
+      render json: City.active
     end
 
     def places
